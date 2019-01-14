@@ -1,7 +1,9 @@
-import InputReading
-import OutputReading
-import Common
-from Common import convert_epoch_to_time
+import sys
+sys.path.append("..")
+import model.InputReading as InputReading
+import model.OutputReading as OutputReading
+import common.Common as Common
+from common.Common import convert_epoch_to_time
 
 def calculate(all_readings):
     output_reading_list = []

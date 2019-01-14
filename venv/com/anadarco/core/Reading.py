@@ -1,13 +1,13 @@
 import os
-import WriteFile
+import sys
 import Calculations
-import PathFile
-from PathFile import get_path
 from Calculations import calculate
-
+sys.path.append("..")
+import common.WriteFile as WriteFile
+import common.PathFile as PathFile
+from common.PathFile import get_path
 
 class ReadFile:
-
     def read(self, path):
         lines = [line.rstrip('\n') for line in open(path)]
         lines.sort()
@@ -22,9 +22,9 @@ class ReadFile:
 
 
 app = ReadFile()
-lines = app.read(PathFile.get_path())
+all_lines = app.read(PathFile.get_path())
 
-formatted_data = app.format_data(lines)
+formatted_data = app.format_data(all_lines)
 
 output_reading = Calculations.calculate(formatted_data)
 
