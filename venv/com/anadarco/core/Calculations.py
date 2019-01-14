@@ -5,20 +5,25 @@ import model.OutputReading as OutputReading
 import common.Common as Common
 from common.Common import convert_epoch_to_time
 
+
 def calculate(all_readings):
+
     output_reading_list = []
     count = 0
     min_value = 0
     diff = 0
     total_gap = 0
     max_flight_time = 0
+
     for i in range(len(all_readings)):
         reading1 = all_readings[i]
         reading2 = all_readings[i + 1] if i < len(all_readings) - 1 else ["0", "0", "0", "0", "0"]
+
         input_reading1 = InputReading.Input(reading1[0], int(reading1[1]), int(reading1[2]), int(reading1[3]),
                                             int(reading1[4]))
         input_reading2 = InputReading.Input(reading2[0], int(reading2[1]), int(reading2[2]), int(reading2[3]),
                                             int(reading2[4]))
+
         if input_reading1.platform_name == input_reading2.platform_name:
             count += 1
             diff = input_reading2.reading_receive_time - input_reading1.reading_receive_time
@@ -52,7 +57,9 @@ def calculate(all_readings):
                                                           total_gap / count if count > 0 else total_gap),
                                                       min_value,
                                                       Common.convert_epoch_to_time(max_flight_time))
+
             output_reading_list.append(output_reading)
+
             count = 0
             min_value = 0
             diff = 0

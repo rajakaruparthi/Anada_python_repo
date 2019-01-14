@@ -8,6 +8,7 @@ import common.PathFile as PathFile
 from common.PathFile import get_path
 
 class ReadFile:
+    
     def read(self, path):
         lines = [line.rstrip('\n') for line in open(path)]
         lines.sort()
@@ -21,11 +22,18 @@ class ReadFile:
         return all_readings
 
 
-app = ReadFile()
-all_lines = app.read(PathFile.get_path())
+if __name__ == '__main__':
 
-formatted_data = app.format_data(all_lines)
+    app = ReadFile()
 
-output_reading = Calculations.calculate(formatted_data)
+    # Reads the file and sort data
+    all_lines = app.read(PathFile.get_path())
 
-WriteFile.Write(output_reading)
+    # formatting the data and populating the data into arrays
+    formatted_data = app.format_data(all_lines)
+
+    # calculations
+    output_reading = Calculations.calculate(formatted_data)
+
+    # writing data to csv file
+    WriteFile.Write(output_reading)

@@ -1,5 +1,6 @@
 import csv
 
+
 class Write:
 
     def __init__(self, output_reading):
@@ -9,7 +10,7 @@ class Write:
             writer.writeheader()
             for each in output_reading:
                 writer.writerow({"Platform name": each.platform_name, "Total Gap Time": each.total_gap_time,
-                             "Average Gap Time": each.avg_gap_time, "Min Value": each.min_value,
-                             "Max Flight Time": each.max_flight_time})
+                                 "Average Gap Time": each.avg_gap_time, "Min Value": each.min_value,
+                                 "Max Flight Time": each.max_flight_time})
 
             print("Writing finished")
